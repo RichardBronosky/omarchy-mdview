@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "bronosky.mdview",
+  "id": "io.github.richardbronosky.mdview",
   "name": "Markdown Viewer",
   "version": "1.0.0",
   "author": "RichardBronosky",
-  "description": "Quick-look Markdown viewer that opens .md files in a themed, keyboard-driven window. Live reload, find, source view, zoom. Uses md2html (md4c), no extra packages. Open with: mdview FILE.md, or omarchy-shell shell summon bronosky.mdview '{\"file\":\"/abs/path.md\"}'.",
+  "description": "Quick-look Markdown viewer that opens .md files in a themed, keyboard-driven window. Live reload, find, source view, zoom. Uses md2html (md4c), no extra packages. Open with: mdview FILE.md, or omarchy-shell shell summon io.github.richardbronosky.mdview '{\"file\":\"/abs/path.md\"}'.",
   "kinds": ["panel"],
   "entryPoints": { "panel": "Viewer.qml" },
   "license": "MIT",

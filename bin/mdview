@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# mdview: open Markdown files in the bronosky.mdview Omarchy plugin.
+# mdview: open Markdown files in the io.github.richardbronosky.mdview Omarchy plugin.
 # Uses the running omarchy-shell when the plugin is enabled (fast, no new
 # process); otherwise starts a standalone Quickshell window.
 set -euo pipefail
 
-plugin_id=bronosky.mdview
+plugin_id=io.github.richardbronosky.mdview
 plugin_dir=$(dirname "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")
 
 if [[ $# -lt 1 || $1 == -h || $1 == --help ]]; then

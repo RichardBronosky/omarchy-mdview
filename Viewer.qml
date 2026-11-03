@@ -1,8 +1,8 @@
 import QtQuick
 import Quickshell
 
-// Panel entry point for bronosky.mdview. Every summon opens one viewer window:
-//   omarchy-shell shell summon bronosky.mdview '{"file":"/abs/path/README.md"}'
+// Panel entry point for io.github.richardbronosky.mdview. Every summon opens one viewer window:
+//   omarchy-shell shell summon io.github.richardbronosky.mdview '{"file":"/abs/path/README.md"}'
 // When the last window closes, the plugin tells the shell it is done so the
 // panel unloads and uses no memory until the next summon.
 Item {
@@ -12,7 +12,7 @@ Item {
   property var shell: null
   property var manifest: null
 
-  readonly property string pluginId: (manifest && manifest.id) || "bronosky.mdview"
+  readonly property string pluginId: (manifest && manifest.id) || "io.github.richardbronosky.mdview"
   property var windows: []
   readonly property bool opened: windows.length > 0
 
@@ -39,7 +39,7 @@ Item {
     windows = windows.concat([win])
   }
 
-  // Host-initiated close (`omarchy-shell shell hide bronosky.mdview`).
+  // Host-initiated close (`omarchy-shell shell hide io.github.richardbronosky.mdview`).
   function close() {
     var all = windows
     windows = []

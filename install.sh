@@ -28,7 +28,7 @@ cat > "$desktop" <<EOF
 [Desktop Entry]
 Type=Application
 Name=Markdown Viewer
-Comment=Quick-look Markdown viewer (Omarchy plugin bronosky.mdview)
+Comment=Quick-look Markdown viewer (Omarchy plugin io.github.richardbronosky.mdview)
 Exec=$bin %F
 Icon=text-markdown
 Terminal=false

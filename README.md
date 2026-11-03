@@ -27,7 +27,7 @@ Everything mdview needs ships with Omarchy, so there's nothing to install:
 
 ```bash
 omarchy plugin add https://github.com/RichardBronosky/omarchy-mdview.git --enable
-~/.config/omarchy/plugins/bronosky.mdview/install.sh
+~/.config/omarchy/plugins/io.github.richardbronosky.mdview/install.sh
 ```
 
 `install.sh` adds the `mdview` command (a symlink in `~/.local/bin`) and a
@@ -36,7 +36,7 @@ omarchy plugin add https://github.com/RichardBronosky/omarchy-mdview.git --enabl
 `.md` app alone. To make mdview the default for `.md` files:
 
 ```bash
-~/.config/omarchy/plugins/bronosky.mdview/install.sh --default
+~/.config/omarchy/plugins/io.github.richardbronosky.mdview/install.sh --default
 ```
 
 ## Use
@@ -44,7 +44,7 @@ omarchy plugin add https://github.com/RichardBronosky/omarchy-mdview.git --enabl
 ```bash
 mdview notes.md                 # one window per file
 mdview *.md
-omarchy-shell shell summon bronosky.mdview '{"file":"/abs/path/notes.md"}'
+omarchy-shell shell summon io.github.richardbronosky.mdview '{"file":"/abs/path/notes.md"}'
 ```
 
 | Keys | Action |
@@ -77,10 +77,10 @@ raw HTML embeds, Mermaid and math aren't rendered.
 ## Update / remove
 
 ```bash
-omarchy plugin update bronosky.mdview
+omarchy plugin update io.github.richardbronosky.mdview
 omarchy restart shell           # the shell keeps running the old plugin code until restarted
-~/.config/omarchy/plugins/bronosky.mdview/install.sh --remove
-omarchy plugin remove bronosky.mdview
+~/.config/omarchy/plugins/io.github.richardbronosky.mdview/install.sh --remove
+omarchy plugin remove io.github.richardbronosky.mdview
 ```
 
 ## License
