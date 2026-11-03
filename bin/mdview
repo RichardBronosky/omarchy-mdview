@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# mdview: open Markdown files in the bronosky.mdview Omarchy plugin.
+# Uses the running omarchy-shell when the plugin is enabled (fast, no new
+# process); otherwise starts a standalone Quickshell window.
+set -euo pipefail
+
+plugin_id=bronosky.mdview
+plugin_dir=$(dirname "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")
+
+if [[ $# -lt 1 || $1 == -h || $1 == --help ]]; then
+  echo "usage: mdview FILE.md [FILE.md ...]" >&2
+  exit 2
+fi
+
+for f in "$@"; do
+  if [[ $f == file://* ]]; then
+    f=$(python3 -c 'import sys, urllib.parse as u; print(u.unquote(sys.argv[1][7:]))' "$f")
+  fi
+  f=$(realpath -- "$f")
+  payload=$(jq -cn --arg file "$f" '{file: $file}')
+
+  if [[ $(omarchy-shell shell summon "$plugin_id" "$payload" 2>/dev/null) != ok ]]; then
+    MDVIEW_FILE="$f" setsid -f qs -p "$plugin_dir/Standalone.qml" >/dev/null 2>&1 </dev/null
+  fi
+done
