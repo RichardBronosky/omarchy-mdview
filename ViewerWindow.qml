@@ -52,7 +52,7 @@ FloatingWindow {
       h3, h4, h5, h6 { color: ${p.yellow}; }
       code { font-family: 'JetBrainsMono Nerd Font', monospace; color: ${p.green};
              background-color: ${p.lighter_background}; }
-      pre { font-family: 'JetBrainsMono Nerd Font', monospace;
+      pre { white-space: pre-wrap; font-family: 'JetBrainsMono Nerd Font', monospace;
             background-color: ${p.lighter_background}; margin: 8px 0; }
       blockquote { color: ${p.muted}; margin-left: 16px; }
       th { color: ${p.accent}; background-color: ${p.lighter_background}; }
