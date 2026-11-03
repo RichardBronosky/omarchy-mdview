@@ -52,8 +52,7 @@ FloatingWindow {
       h3, h4, h5, h6 { color: ${p.yellow}; }
       code { font-family: 'JetBrainsMono Nerd Font', monospace; color: ${p.green};
              background-color: ${p.lighter_background}; }
-      pre { white-space: pre-wrap; font-family: 'JetBrainsMono Nerd Font', monospace;
-            background-color: ${p.lighter_background}; margin: 8px 0; }
+      td.code { font-family: 'JetBrainsMono Nerd Font', monospace; color: ${p.green}; }
       blockquote { color: ${p.muted}; margin-left: 16px; }
       th { color: ${p.accent}; background-color: ${p.lighter_background}; }
       hr { color: ${p.muted}; }
@@ -61,6 +60,21 @@ FloatingWindow {
     // Qt draws no table grid unless asked for one.
     html = html.replace(/<table>/g,
       `<table border="1" cellspacing="0" cellpadding="6" style="border-color:${p.muted}; border-collapse: collapse;">`)
+
+    // Qt never wraps <pre>, so long lines run off the window. Render each code
+    // block as a one-cell table of normal text instead: newlines become <br>,
+    // runs of spaces become &nbsp; to keep indentation, and long lines wrap.
+    html = html.replace(/<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/g, function(m, code) {
+      code = code.replace(/\n$/, "").replace(/\t/g, "    ")
+        .replace(/ {2,}/g, function(s) { return "&nbsp;".repeat(s.length - 1) + " " })
+        .replace(/\n/g, "<br>")
+      return `<table width="100%" cellspacing="0" cellpadding="10" style="margin: 8px 0;"`
+        + ` bgcolor="${p.lighter_background}"><tr><td class="code">${code}</td></tr></table>`
+    })
+
+    // Qt ignores <input>; show task-list checkboxes as glyphs.
+    html = html.replace(/<input[^>]*checkbox[^>]*checked[^>]*>/g, "☑ ")
+      .replace(/<input[^>]*checkbox[^>]*>/g, "☐ ")
     return `<html><head><style>${css}</style></head><body>${html}</body></html>`
   }
 
