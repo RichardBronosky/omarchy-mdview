@@ -1,5 +1,7 @@
 # mdview: Markdown viewer plugin for Omarchy
 
+![mdview showing a Markdown file with a table, task list and code block](preview.png)
+
 A quick-look Markdown viewer for [Omarchy](https://omarchy.org). Double-click a
 `.md` file (or run `mdview README.md`) and it opens right away in a window that
 matches your Omarchy theme, like the PDF viewer does for PDFs.
@@ -12,6 +14,15 @@ matches your Omarchy theme, like the PDF viewer does for PDFs.
 - **Live reload:** it refreshes when the file is saved and when you switch themes.
 - **Keyboard-driven:** vim-style scrolling, find, source view, zoom.
 
+## Dependencies
+
+Everything mdview needs ships with Omarchy, so there's nothing to install:
+
+- `omarchy-shell` / Quickshell (runs the viewer)
+- `md2html` from `md4c` (renders the Markdown)
+- `jq` and `python3` (used by the `mdview` launcher)
+- `xdg-utils` (Open With entry and the optional default-app switch)
+
 ## Install
 
 ```bash
@@ -19,9 +30,10 @@ omarchy plugin add https://github.com/RichardBronosky/omarchy-mdview.git --enabl
 ~/.config/omarchy/plugins/bronosky.mdview/install.sh
 ```
 
-`install.sh` adds the `mdview` command and a **Markdown Viewer** entry under
-"Open With" in the file manager. It leaves your current default `.md` app
-alone. To make mdview the default for `.md` files:
+`install.sh` adds the `mdview` command (a symlink in `~/.local/bin`) and a
+**Markdown Viewer** entry under "Open With" in the file manager
+(`~/.local/share/applications/mdview.desktop`). It leaves your current default
+`.md` app alone. To make mdview the default for `.md` files:
 
 ```bash
 ~/.config/omarchy/plugins/bronosky.mdview/install.sh --default
@@ -66,6 +78,7 @@ raw HTML embeds, Mermaid and math aren't rendered.
 
 ```bash
 omarchy plugin update bronosky.mdview
+omarchy restart shell           # the shell keeps running the old plugin code until restarted
 ~/.config/omarchy/plugins/bronosky.mdview/install.sh --remove
 omarchy plugin remove bronosky.mdview
 ```
